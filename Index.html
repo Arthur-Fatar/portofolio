@@ -6,7 +6,9 @@
   <title>Arthur Fatar Aira Bahri - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     body {
       box-sizing: border-box;
@@ -16,12 +18,30 @@
       scroll-behavior: smooth;
     }
     
-    .font-heading {
-      font-family: 'Space Grotesk', sans-serif;
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
-    .font-body {
-      font-family: 'Inter', sans-serif;
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .glow-effect {
+      box-shadow: 0 0 60px rgba(102, 126, 234, 0.3);
+    }
+    
+    .skill-bar {
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transition: width 1s ease-out;
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
     }
     
     @keyframes float {
@@ -29,113 +49,22 @@
       50% { transform: translateY(-20px); }
     }
     
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
     }
     
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
     }
     
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
-      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
-    }
-    
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    .animate-fade-in-up {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-    
-    .animate-slide-left {
-      animation: slideInLeft 0.8s ease-out forwards;
-    }
-    
-    .animate-slide-right {
-      animation: slideInRight 0.8s ease-out forwards;
-    }
-    
-    .animate-scale-in {
-      animation: scaleIn 0.6s ease-out forwards;
-    }
-    
-    .animate-pulse-glow {
-      animation: pulse-glow 2s ease-in-out infinite;
-    }
-    
-    .delay-100 { animation-delay: 0.1s; }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-    .delay-400 { animation-delay: 0.4s; }
-    .delay-500 { animation-delay: 0.5s; }
-    .delay-600 { animation-delay: 0.6s; }
-    
-    .glass-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .gradient-text {
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .hover-lift {
-      transition: all 0.3s ease;
-    }
-    
-    .hover-lift:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
-    }
-    
-    .skill-bar {
-      background: linear-gradient(90deg, #6366f1, #a855f7);
-      border-radius: 9999px;
-      height: 8px;
-      transition: width 1s ease-out;
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(118, 75, 162, 0.6); }
     }
     
     .nav-link {
@@ -150,7 +79,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #6366f1, #a855f7);
+      background: linear-gradient(90deg, #667eea, #764ba2);
       transition: width 0.3s ease;
     }
     
@@ -158,126 +87,172 @@
       width: 100%;
     }
     
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.5;
-      z-index: 0;
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     
-    section {
-      position: relative;
-      z-index: 1;
+    .card-hover:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+    
+    .bg-pattern {
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(240, 147, 251, 0.1) 0%, transparent 40%);
+    }
+    
+    .timeline-dot {
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #0f0f23;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #667eea, #764ba2);
+      border-radius: 4px;
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full font-body bg-slate-950 text-gray-100 overflow-x-hidden">
-  <div class="h-full w-full overflow-auto"><!-- Background Blobs -->
-   <div class="blob w-96 h-96 bg-indigo-600 top-0 left-0 fixed"></div>
-   <div class="blob w-80 h-80 bg-purple-600 top-1/2 right-0 fixed"></div>
-   <div class="blob w-72 h-72 bg-pink-600 bottom-0 left-1/3 fixed"></div><!-- Header / Navigation -->
-   <header class="fixed top-0 left-0 right-0 z-50 glass-card">
-    <nav class="max-w-7xl mx-auto px-6 py-4">
+ <body class="h-full bg-[#0a0a1a] text-white overflow-auto" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+  <div class="min-h-full bg-pattern"><!-- Navigation Header -->
+   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-card">
+    <div class="max-w-7xl mx-auto px-6 py-4">
      <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
-       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-heading font-bold text-white">
+       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center font-bold text-lg">
         A
-       </div><span id="header-name" class="font-heading font-semibold text-lg">Arthur Fatar</span>
-      </div><!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-8"><a href="#home" class="nav-link py-2 text-gray-300 hover:text-white transition-colors">Home</a> <a href="#about" class="nav-link py-2 text-gray-300 hover:text-white transition-colors">About</a> <a href="#skills" class="nav-link py-2 text-gray-300 hover:text-white transition-colors">Skills</a> <a href="#portfolio" class="nav-link py-2 text-gray-300 hover:text-white transition-colors">Portfolio</a> <a href="#experience" class="nav-link py-2 text-gray-300 hover:text-white transition-colors">Experience</a> <a href="#contact" class="nav-link py-2 text-gray-300 hover:text-white transition-colors">Contact</a>
-      </div><!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors">
+       </div><span id="nav-name" class="font-semibold text-lg hidden sm:block">Arthur Fatar</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8"><a href="#home" class="nav-link text-gray-300 hover:text-white transition-colors py-2">Home</a> <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors py-2">About</a> <a href="#skills" class="nav-link text-gray-300 hover:text-white transition-colors py-2">Skills</a> <a href="#portfolio" class="nav-link text-gray-300 hover:text-white transition-colors py-2">Portfolio</a> <a href="#experience" class="nav-link text-gray-300 hover:text-white transition-colors py-2">Experience</a> <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors py-2">Contact</a>
+      </div><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors">
        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
        </svg></button>
-     </div><!-- Mobile Navigation -->
-     <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4 border-t border-white/10 pt-4">
-      <div class="flex flex-col gap-3"><a href="#home" class="py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Home</a> <a href="#about" class="py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">About</a> <a href="#skills" class="py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Skills</a> <a href="#portfolio" class="py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Portfolio</a> <a href="#experience" class="py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Experience</a> <a href="#contact" class="py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Contact</a>
+     </div><!-- Mobile Menu -->
+     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
+      <div class="flex flex-col gap-4"><a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a> <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a> <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a> <a href="#portfolio" class="text-gray-300 hover:text-white transition-colors">Portfolio</a> <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a> <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
       </div>
      </div>
-    </nav>
-   </header><!-- Hero / Home Section -->
-   <section id="home" class="min-h-screen flex items-center pt-20 px-6">
-    <div class="max-w-7xl mx-auto w-full">
-     <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div class="order-2 lg:order-1">
-       <p class="text-indigo-400 font-medium mb-4 animate-fade-in-up opacity-0" style="animation-delay: 0.1s">👋 Selamat Datang</p>
-       <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up opacity-0" style="animation-delay: 0.2s">Saya <span id="hero-name" class="gradient-text">Arthur Fatar Aira Bahri</span></h1>
-       <p id="hero-role" class="text-xl md:text-2xl text-gray-400 mb-4 animate-fade-in-up opacity-0" style="animation-delay: 0.3s">Pelajar | Calon Mahasiswa ITB</p>
-       <p id="hero-intro" class="text-gray-400 text-lg mb-8 max-w-lg animate-fade-in-up opacity-0" style="animation-delay: 0.4s">Seorang siswa SMAN 1 Subang yang bersemangat untuk belajar dan berkembang. Siap menghadapi tantangan baru!</p>
-       <div class="flex flex-wrap gap-4 animate-fade-in-up opacity-0" style="animation-delay: 0.5s"><a href="#portfolio" class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30"> Lihat Portfolio </a> <a href="#contact" class="px-8 py-4 border border-indigo-500/50 rounded-xl font-semibold hover:bg-indigo-500/10 transition-all hover:scale-105"> Hubungi Saya </a>
-       </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+     <div class="fade-in order-2 lg:order-1">
+      <p class="text-[#667eea] font-medium mb-4 tracking-wider uppercase text-sm">���� Selamat Datang</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Saya <span id="hero-name" class="gradient-text">Arthur Fatar Aira Bahri</span></h1>
+      <p id="hero-role" class="text-xl sm:text-2xl text-gray-400 mb-4">Pelajar &amp; Future Tech Enthusiast</p>
+      <p id="hero-intro" class="text-gray-500 mb-8 max-w-lg leading-relaxed">Siswa SMAN 1 Subang yang passionate dalam teknologi dan inovasi. Siap untuk berkontribusi dan terus belajar.</p>
+      <div class="flex flex-wrap gap-4"><a href="#portfolio" class="px-8 py-4 rounded-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] font-semibold hover:opacity-90 transition-all hover:scale-105 pulse-glow"> Lihat Portfolio </a> <a href="#contact" class="px-8 py-4 rounded-xl border border-white/20 font-semibold hover:bg-white/10 transition-all hover:scale-105"> Hubungi Saya </a>
       </div>
-      <div class="order-1 lg:order-2 flex justify-center animate-fade-in-up opacity-0" style="animation-delay: 0.3s">
-       <div class="relative">
-        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-1 animate-pulse-glow">
-         <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
-          <svg class="w-40 h-40 md:w-52 md:h-52 text-gray-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-          </svg>
-         </div>
+      <div class="flex items-center gap-6 mt-10"><a href="https://www.instagram.com/arteezyyy__" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a> <a href="mailto:arthurfatar11@gmail.com" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg></a> <a href="https://wa.me/6283191002449" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg></a>
+      </div>
+     </div>
+     <div class="order-1 lg:order-2 flex justify-center">
+      <div class="relative floating">
+       <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#f093fb] p-1 glow-effect">
+        <div class="w-full h-full rounded-full bg-[#0a0a1a] flex items-center justify-center overflow-hidden"><img src="https://raw.githubusercontent.com/sabia032008-ux/Foto/refs/heads/main/IMG-20260205-WA0026.jpg" alt="Arthur Fatar Aira Bahri" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Photo unavailable';">
         </div>
-        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center animate-float"><span class="text-3xl">🎓</span>
-        </div>
+       </div>
+       <div class="absolute -top-4 -right-4 w-20 h-20 rounded-2xl glass-card flex items-center justify-center animate-bounce"><span class="text-3xl">🎯</span>
+       </div>
+       <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-2xl glass-card flex items-center justify-center" style="animation: float 4s ease-in-out infinite reverse;"><span class="text-2xl">💡</span>
        </div>
       </div>
      </div>
     </div>
    </section><!-- About Section -->
    <section id="about" class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto">
      <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Tentang <span class="gradient-text">Saya</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Mengenal lebih dekat siapa saya dan perjalanan saya</p>
+      <p class="text-[#667eea] font-medium mb-4 tracking-wider uppercase text-sm">Tentang Saya</p>
+      <h2 class="text-3xl sm:text-4xl font-bold gradient-text">Kenali Saya Lebih Dekat</h2>
      </div>
-     <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div class="glass-card rounded-3xl p-8 hover-lift">
-       <h3 class="font-heading text-2xl font-semibold mb-6 flex items-center gap-3"><span class="text-3xl">📖</span> Latar Belakang</h3>
-       <p class="text-gray-300 leading-relaxed mb-6">Halo! Saya seorang siswa di <span class="text-indigo-400 font-medium">SMAN 1 Subang</span> yang sangat antusias dengan dunia pendidikan dan pengembangan diri! Saya aktif dalam berbagai Ekstrakurikuler untuk mengembangkan potensi diri.</p>
-       <p class="text-gray-300 leading-relaxed">Salah satu pencapaian yang paling berkesan bagi saya adalah ketika bisa berkontribusi dalam organisasi sekolah dan meraih berbagai prestasi akademik maupun non-akademik.</p>
-      </div>
-      <div class="space-y-6">
-       <div class="glass-card rounded-3xl p-8 hover-lift">
-        <h3 class="font-heading text-2xl font-semibold mb-6 flex items-center gap-3"><span class="text-3xl">🎯</span> Minat &amp; Tujuan</h3>
-        <p class="text-gray-300 leading-relaxed">Saya berminat untuk melanjutkan studi saya di <span class="text-purple-400 font-medium">Institut Teknologi Bandung (ITB)</span>. Dengan semangat belajar yang tinggi, saya yakin bisa meraih cita-cita tersebut.</p>
+     <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div class="glass-card rounded-3xl p-8 card-hover">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center"><span class="text-2xl">📖</span>
+        </div>
+        <h3 class="text-xl font-semibold">Latar Belakang</h3>
        </div>
-       <div class="glass-card rounded-3xl p-8 hover-lift">
-        <h3 class="font-heading text-2xl font-semibold mb-6 flex items-center gap-3"><span class="text-3xl">🏫</span> Riwayat Pendidikan</h3>
-        <div class="space-y-4">
-         <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-xl">
-           🎒
-          </div>
-          <div>
-           <p class="font-medium">TK</p>
-           <p class="text-sm text-gray-400">TKIT AL-UKHUWAH</p>
-          </div>
-         </div>
-         <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-xl">
-           📚
-          </div>
-          <div>
-           <p class="font-medium">SD</p>
-           <p class="text-sm text-gray-400">SDIT AL-UKHUWAH</p>
-          </div>
-         </div>
-         <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-xl">
-           📖
-          </div>
-          <div>
-           <p class="font-medium">SMP</p>
-           <p class="text-sm text-gray-400">SMPN 1 SUBANG</p>
+       <p id="about-text" class="text-gray-400 leading-relaxed">Halo! Saya seorang siswa di SMAN 1 Subang yang sangat antusias dengan dunia teknologi dan inovasi! Saya aktif dalam berbagai ekstrakurikuler dan organisasi sekolah. Salah satu pencapaian yang paling berkesan bagi saya adalah berkontribusi dalam berbagai kegiatan yang mengasah kemampuan leadership dan problem solving.</p>
+      </div>
+      <div class="glass-card rounded-3xl p-8 card-hover">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#764ba2] to-[#f093fb] flex items-center justify-center"><span class="text-2xl">🎯</span>
+        </div>
+        <h3 class="text-xl font-semibold">Minat &amp; Tujuan</h3>
+       </div>
+       <p class="text-gray-400 leading-relaxed">Saya berminat untuk melanjutkan studi di <span class="text-[#667eea] font-semibold">Institut Teknologi Bandung (ITB)</span>. Dengan semangat belajar yang tinggi, saya terus mengembangkan diri untuk mencapai impian tersebut dan berkontribusi bagi kemajuan teknologi Indonesia.</p>
+      </div>
+     </div><!-- Education Timeline -->
+     <div class="mt-16">
+      <h3 class="text-2xl font-bold text-center mb-12">📚 Riwayat Pendidikan</h3>
+      <div class="relative">
+       <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#667eea] via-[#764ba2] to-[#f093fb] hidden md:block"></div>
+       <div class="space-y-8"><!-- TK -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+         <div class="flex-1 text-right hidden md:block">
+          <div class="glass-card rounded-2xl p-6 inline-block card-hover">
+           <p class="text-[#667eea] font-medium">TK</p>
+           <h4 class="font-semibold text-lg">TKIT AL-UKHUWAH</h4>
           </div>
          </div>
-         <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl">
-           🎓
+         <div class="w-4 h-4 rounded-full bg-[#667eea] timeline-dot z-10 hidden md:block"></div>
+         <div class="flex-1 md:hidden">
+          <div class="glass-card rounded-2xl p-6 card-hover">
+           <p class="text-[#667eea] font-medium">TK</p>
+           <h4 class="font-semibold text-lg">TKIT AL-UKHUWAH</h4>
           </div>
-          <div>
-           <p class="font-medium">SMA</p>
-           <p class="text-sm text-gray-400">SMAN 1 SUBANG</p>
+         </div>
+         <div class="flex-1 hidden md:block"></div>
+        </div><!-- SD -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+         <div class="flex-1 hidden md:block"></div>
+         <div class="w-4 h-4 rounded-full bg-[#764ba2] timeline-dot z-10 hidden md:block"></div>
+         <div class="flex-1">
+          <div class="glass-card rounded-2xl p-6 inline-block card-hover">
+           <p class="text-[#764ba2] font-medium">SD</p>
+           <h4 class="font-semibold text-lg">SDIT AL-UKHUWAH</h4>
+          </div>
+         </div>
+        </div><!-- SMP -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+         <div class="flex-1 text-right hidden md:block">
+          <div class="glass-card rounded-2xl p-6 inline-block card-hover">
+           <p class="text-[#9f5de3] font-medium">SMP</p>
+           <h4 class="font-semibold text-lg">SMPN 1 SUBANG</h4>
+          </div>
+         </div>
+         <div class="w-4 h-4 rounded-full bg-[#9f5de3] timeline-dot z-10 hidden md:block"></div>
+         <div class="flex-1 md:hidden">
+          <div class="glass-card rounded-2xl p-6 card-hover">
+           <p class="text-[#9f5de3] font-medium">SMP</p>
+           <h4 class="font-semibold text-lg">SMPN 1 SUBANG</h4>
+          </div>
+         </div>
+         <div class="flex-1 hidden md:block"></div>
+        </div><!-- SMA -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+         <div class="flex-1 hidden md:block"></div>
+         <div class="w-4 h-4 rounded-full bg-[#f093fb] timeline-dot z-10 hidden md:block"></div>
+         <div class="flex-1">
+          <div class="glass-card rounded-2xl p-6 inline-block card-hover pulse-glow">
+           <p class="text-[#f093fb] font-medium">SMA (Saat Ini)</p>
+           <h4 class="font-semibold text-lg">SMAN 1 SUBANG</h4>
           </div>
          </div>
         </div>
@@ -286,64 +261,60 @@
      </div>
     </div>
    </section><!-- Skills Section -->
-   <section id="skills" class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
+   <section id="skills" class="py-24 px-6 bg-[#0d0d20]">
+    <div class="max-w-6xl mx-auto">
      <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Keahlian <span class="gradient-text">Saya</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Kemampuan yang saya kembangkan selama ini</p>
+      <p class="text-[#667eea] font-medium mb-4 tracking-wider uppercase text-sm">Keahlian</p>
+      <h2 class="text-3xl sm:text-4xl font-bold gradient-text">Apa yang Saya Kuasai</h2>
      </div>
      <div class="grid md:grid-cols-2 gap-8"><!-- Hard Skills -->
-      <div class="glass-card rounded-3xl p-8 hover-lift">
-       <h3 class="font-heading text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">💻</span> Hard Skills</h3>
+      <div class="glass-card rounded-3xl p-8 card-hover">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center"><span class="text-2xl">💻</span>
+        </div>
+        <h3 class="text-xl font-semibold">Hard Skills</h3>
+       </div>
        <div class="space-y-6">
         <div>
-         <div class="flex justify-between mb-2"><span class="font-medium">Desain Grafis Dasar</span> <span class="text-indigo-400">75%</span>
+         <div class="flex justify-between mb-2"><span class="text-gray-300">Desain Grafis Dasar</span> <span class="text-[#667eea]">75%</span>
          </div>
-         <div class="h-2 bg-white/10 rounded-full overflow-hidden">
-          <div class="skill-bar" style="width: 75%"></div>
-         </div>
-        </div>
-        <div>
-         <div class="flex justify-between mb-2"><span class="font-medium">English</span> <span class="text-indigo-400">80%</span>
-         </div>
-         <div class="h-2 bg-white/10 rounded-full overflow-hidden">
-          <div class="skill-bar" style="width: 80%"></div>
+         <div class="h-3 bg-white/10 rounded-full overflow-hidden">
+          <div class="skill-bar h-full rounded-full" style="width: 75%;"></div>
          </div>
         </div>
         <div>
-         <div class="flex justify-between mb-2"><span class="font-medium">Microsoft Office</span> <span class="text-indigo-400">85%</span>
+         <div class="flex justify-between mb-2"><span class="text-gray-300">English</span> <span class="text-[#667eea]">80%</span>
          </div>
-         <div class="h-2 bg-white/10 rounded-full overflow-hidden">
-          <div class="skill-bar" style="width: 85%"></div>
+         <div class="h-3 bg-white/10 rounded-full overflow-hidden">
+          <div class="skill-bar h-full rounded-full" style="width: 80%;"></div>
+         </div>
+        </div>
+        <div>
+         <div class="flex justify-between mb-2"><span class="text-gray-300">Microsoft Office</span> <span class="text-[#667eea]">85%</span>
+         </div>
+         <div class="h-3 bg-white/10 rounded-full overflow-hidden">
+          <div class="skill-bar h-full rounded-full" style="width: 85%;"></div>
          </div>
         </div>
        </div>
       </div><!-- Soft Skills -->
-      <div class="glass-card rounded-3xl p-8 hover-lift">
-       <h3 class="font-heading text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">🧠</span> Soft Skills</h3>
+      <div class="glass-card rounded-3xl p-8 card-hover">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#764ba2] to-[#f093fb] flex items-center justify-center"><span class="text-2xl">🧠</span>
+        </div>
+        <h3 class="text-xl font-semibold">Soft Skills</h3>
+       </div>
        <div class="grid grid-cols-2 gap-4">
-        <div class="p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all hover:scale-105 text-center">
-         <div class="text-3xl mb-3">
-          🗣️
-         </div>
+        <div class="bg-white/5 rounded-2xl p-5 text-center hover:bg-white/10 transition-all hover:scale-105"><span class="text-3xl mb-3 block">💬</span>
          <p class="font-medium">Komunikasi Efektif</p>
         </div>
-        <div class="p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all hover:scale-105 text-center">
-         <div class="text-3xl mb-3">
-          👥
-         </div>
+        <div class="bg-white/5 rounded-2xl p-5 text-center hover:bg-white/10 transition-all hover:scale-105"><span class="text-3xl mb-3 block">👑</span>
          <p class="font-medium">Leadership</p>
         </div>
-        <div class="p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all hover:scale-105 text-center">
-         <div class="text-3xl mb-3">
-          🧩
-         </div>
+        <div class="bg-white/5 rounded-2xl p-5 text-center hover:bg-white/10 transition-all hover:scale-105"><span class="text-3xl mb-3 block">🧩</span>
          <p class="font-medium">Problem Solving</p>
         </div>
-        <div class="p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all hover:scale-105 text-center">
-         <div class="text-3xl mb-3">
-          🤝
-         </div>
+        <div class="bg-white/5 rounded-2xl p-5 text-center hover:bg-white/10 transition-all hover:scale-105"><span class="text-3xl mb-3 block">🤝</span>
          <p class="font-medium">Teamwork</p>
         </div>
        </div>
@@ -352,286 +323,177 @@
     </div>
    </section><!-- Portfolio Section -->
    <section id="portfolio" class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto">
      <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Portfolio <span class="gradient-text">Saya</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Karya dan proyek yang telah saya kerjakan</p>
+      <p class="text-[#667eea] font-medium mb-4 tracking-wider uppercase text-sm">Portfolio</p>
+      <h2 class="text-3xl sm:text-4xl font-bold gradient-text">Proyek &amp; Karya Saya</h2>
      </div>
-     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Project 1 -->
-      <div class="glass-card rounded-3xl overflow-hidden hover-lift group">
-       <div class="h-48 bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="text-white font-medium">Lihat Detail</span>
-        </div><span class="text-6xl">📊</span>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Project 1 -->
+      <div class="glass-card rounded-3xl overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#667eea]/30 to-[#764ba2]/30 flex items-center justify-center relative overflow-hidden"><span class="text-6xl group-hover:scale-110 transition-transform">📊</span>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
        </div>
        <div class="p-6">
-        <h4 class="font-heading text-xl font-semibold mb-2">Proyek Presentasi</h4>
-        <p class="text-gray-400 text-sm mb-4">Membuat presentasi interaktif untuk tugas sekolah dengan desain yang menarik</p>
-        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 text-xs">PowerPoint</span> <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs">Design</span>
+        <h3 class="font-semibold text-lg mb-2">Proyek Presentasi</h3>
+        <p class="text-gray-400 text-sm mb-4">Presentasi interaktif untuk mata pelajaran dengan desain modern dan menarik.</p>
+        <div class="flex gap-2"><span class="px-3 py-1 bg-[#667eea]/20 text-[#667eea] text-xs rounded-full">PowerPoint</span> <span class="px-3 py-1 bg-[#764ba2]/20 text-[#764ba2] text-xs rounded-full">Design</span>
         </div>
        </div>
       </div><!-- Project 2 -->
-      <div class="glass-card rounded-3xl overflow-hidden hover-lift group">
-       <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-700 flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="text-white font-medium">Lihat Detail</span>
-        </div><span class="text-6xl">🎨</span>
+      <div class="glass-card rounded-3xl overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#764ba2]/30 to-[#f093fb]/30 flex items-center justify-center relative overflow-hidden"><span class="text-6xl group-hover:scale-110 transition-transform">🎨</span>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
        </div>
        <div class="p-6">
-        <h4 class="font-heading text-xl font-semibold mb-2">Desain Poster</h4>
-        <p class="text-gray-400 text-sm mb-4">Membuat poster untuk kegiatan sekolah dan organisasi</p>
-        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 text-xs">Canva</span> <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs">Creative</span>
+        <h3 class="font-semibold text-lg mb-2">Desain Poster Event</h3>
+        <p class="text-gray-400 text-sm mb-4">Desain poster untuk berbagai kegiatan sekolah dan organisasi.</p>
+        <div class="flex gap-2"><span class="px-3 py-1 bg-[#667eea]/20 text-[#667eea] text-xs rounded-full">Canva</span> <span class="px-3 py-1 bg-[#764ba2]/20 text-[#764ba2] text-xs rounded-full">Creative</span>
         </div>
        </div>
       </div><!-- Project 3 -->
-      <div class="glass-card rounded-3xl overflow-hidden hover-lift group">
-       <div class="h-48 bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="text-white font-medium">Lihat Detail</span>
-        </div><span class="text-6xl">📝</span>
+      <div class="glass-card rounded-3xl overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#f093fb]/30 to-[#667eea]/30 flex items-center justify-center relative overflow-hidden"><span class="text-6xl group-hover:scale-110 transition-transform">📝</span>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
        </div>
        <div class="p-6">
-        <h4 class="font-heading text-xl font-semibold mb-2">Proyek Penulisan</h4>
-        <p class="text-gray-400 text-sm mb-4">Menulis artikel dan essay untuk berbagai kompetisi</p>
-        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs">Writing</span> <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs">Research</span>
+        <h3 class="font-semibold text-lg mb-2">Karya Tulis Ilmiah</h3>
+        <p class="text-gray-400 text-sm mb-4">Penelitian dan karya tulis untuk kompetisi akademik.</p>
+        <div class="flex gap-2"><span class="px-3 py-1 bg-[#667eea]/20 text-[#667eea] text-xs rounded-full">Research</span> <span class="px-3 py-1 bg-[#764ba2]/20 text-[#764ba2] text-xs rounded-full">Writing</span>
         </div>
        </div>
       </div>
      </div>
     </div>
    </section><!-- Experience Section -->
-   <section id="experience" class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
+   <section id="experience" class="py-24 px-6 bg-[#0d0d20]">
+    <div class="max-w-6xl mx-auto">
      <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Pengalaman &amp; <span class="gradient-text">Prestasi</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Perjalanan dan pencapaian yang telah saya raih</p>
+      <p class="text-[#667eea] font-medium mb-4 tracking-wider uppercase text-sm">Pengalaman &amp; Prestasi</p>
+      <h2 class="text-3xl sm:text-4xl font-bold gradient-text">Pencapaian Saya</h2>
      </div>
-     <div class="grid lg:grid-cols-3 gap-8"><!-- Organisasi -->
-      <div class="glass-card rounded-3xl p-8 hover-lift">
-       <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-3xl mb-6">
-        👥
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Experience 1 -->
+      <div class="glass-card rounded-3xl p-8 card-hover text-center">
+       <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center mx-auto mb-6"><span class="text-4xl">🏛️</span>
        </div>
-       <h3 class="font-heading text-xl font-semibold mb-4">Pengalaman Organisasi</h3>
-       <div class="space-y-4">
-        <div class="p-4 rounded-xl bg-white/5">
-         <p class="font-medium text-indigo-400">MPK SMAN 1 Subang</p>
-         <p class="text-sm text-gray-400">Majelis Perwakilan Kelas</p>
-        </div>
+       <h3 class="font-semibold text-lg mb-2">Pengalaman Organisasi</h3>
+       <p class="text-[#667eea] font-medium text-xl mb-2">MPK</p>
+       <p class="text-gray-400 text-sm">Majelis Perwakilan Kelas - Aktif dalam kegiatan organisasi sekolah</p>
+      </div><!-- Experience 2 -->
+      <div class="glass-card rounded-3xl p-8 card-hover text-center">
+       <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#764ba2] to-[#f093fb] flex items-center justify-center mx-auto mb-6"><span class="text-4xl">🏆</span>
        </div>
-      </div><!-- Sertifikat -->
-      <div class="glass-card rounded-3xl p-8 hover-lift">
-       <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center text-3xl mb-6">
-        🏅
+       <h3 class="font-semibold text-lg mb-2">Sertifikat</h3>
+       <p class="text-[#764ba2] font-medium text-xl mb-2">Olimpiade Fisika Nasional</p>
+       <p class="text-gray-400 text-sm">Partisipasi dalam kompetisi fisika tingkat nasional</p>
+      </div><!-- Experience 3 -->
+      <div class="glass-card rounded-3xl p-8 card-hover text-center">
+       <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#f093fb] to-[#667eea] flex items-center justify-center mx-auto mb-6"><span class="text-4xl">⚽</span>
        </div>
-       <h3 class="font-heading text-xl font-semibold mb-4">Sertifikat</h3>
-       <div class="space-y-4">
-        <div class="p-4 rounded-xl bg-white/5">
-         <p class="font-medium text-yellow-400">Olimpiade Fisika Nasional</p>
-         <p class="text-sm text-gray-400">Peserta Kompetisi</p>
-        </div>
-       </div>
-      </div><!-- Prestasi -->
-      <div class="glass-card rounded-3xl p-8 hover-lift">
-       <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-3xl mb-6">
-        🏆
-       </div>
-       <h3 class="font-heading text-xl font-semibold mb-4">Prestasi</h3>
-       <div class="space-y-4">
-        <div class="p-4 rounded-xl bg-white/5">
-         <p class="font-medium text-green-400">Juara Liga 1 Indonesia</p>
-         <p class="text-sm text-gray-400">Prestasi Non-Akademik</p>
-        </div>
-       </div>
+       <h3 class="font-semibold text-lg mb-2">Prestasi Non-Akademik</h3>
+       <p class="text-[#f093fb] font-medium text-xl mb-2">Juara Liga 1 Indonesia</p>
+       <p class="text-gray-400 text-sm">Prestasi dalam bidang olahraga</p>
       </div>
      </div>
     </div>
    </section><!-- Contact Section -->
    <section id="contact" class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-4xl mx-auto">
      <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Hubungi <span class="gradient-text">Saya</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Jangan ragu untuk menghubungi saya</p>
+      <p class="text-[#667eea] font-medium mb-4 tracking-wider uppercase text-sm">Kontak</p>
+      <h2 class="text-3xl sm:text-4xl font-bold gradient-text">Mari Terhubung!</h2>
+      <p class="text-gray-400 mt-4">Jangan ragu untuk menghubungi saya</p>
      </div>
-     <div class="grid lg:grid-cols-2 gap-12"><!-- Contact Info -->
-      <div class="space-y-6">
-       <div class="glass-card rounded-3xl p-6 hover-lift flex items-center gap-6">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center text-2xl flex-shrink-0">
-         📧
+     <div class="grid sm:grid-cols-3 gap-6 mb-12"><a href="mailto:arthurfatar11@gmail.com" class="glass-card rounded-2xl p-6 text-center card-hover group">
+       <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+       </div><h3 class="font-semibold mb-2">Email</h3><p id="contact-email" class="text-gray-400 text-sm break-all">arthurfatar11@gmail.com</p></a> <a href="https://wa.me/6283191002449" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 text-center card-hover group">
+       <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#25D366] to-[#128C7E] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+       </div><h3 class="font-semibold mb-2">WhatsApp</h3><p id="contact-whatsapp" class="text-gray-400 text-sm">083191002449</p></a> <a href="https://www.instagram.com/arteezyyy__" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 text-center card-hover group">
+       <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+       </div><h3 class="font-semibold mb-2">Instagram</h3><p class="text-gray-400 text-sm">@arteezyyy__</p></a>
+     </div><!-- Contact Form -->
+     <div class="glass-card rounded-3xl p-8">
+      <h3 class="text-xl font-semibold mb-6 text-center">Kirim Pesan</h3>
+      <form id="contact-form" class="space-y-6">
+       <div class="grid sm:grid-cols-2 gap-6">
+        <div><label for="name" class="block text-sm font-medium text-gray-300 mb-2">Nama</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#667eea] focus:outline-none focus:ring-2 focus:ring-[#667eea]/20 transition-all" placeholder="Nama Anda">
         </div>
-        <div>
-         <p class="text-gray-400 text-sm mb-1">Email</p><a id="contact-email" href="mailto:arthurfatar11@gmail.com" class="font-medium hover:text-indigo-400 transition-colors">arthurfatar11@gmail.com</a>
-        </div>
-       </div>
-       <div class="glass-card rounded-3xl p-6 hover-lift flex items-center gap-6">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-2xl flex-shrink-0">
-         📱
-        </div>
-        <div>
-         <p class="text-gray-400 text-sm mb-1">WhatsApp</p><a id="contact-whatsapp" href="https://wa.me/6283191002449" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-indigo-400 transition-colors">083191002449</a>
-        </div>
-       </div>
-       <div class="glass-card rounded-3xl p-6 hover-lift flex items-center gap-6">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-2xl flex-shrink-0">
-         📸
-        </div>
-        <div>
-         <p class="text-gray-400 text-sm mb-1">Instagram</p><a href="https://www.instagram.com/arteezyyy__" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-indigo-400 transition-colors">@arteezyyy__</a>
+        <div><label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#667eea] focus:outline-none focus:ring-2 focus:ring-[#667eea]/20 transition-all" placeholder="email@example.com">
         </div>
        </div>
-      </div><!-- Contact Form -->
-      <div class="glass-card rounded-3xl p-8">
-       <h3 class="font-heading text-2xl font-semibold mb-6">Kirim Pesan</h3>
-       <form id="contact-form" class="space-y-6">
-        <div><label for="name" class="block text-sm font-medium mb-2">Nama</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" placeholder="Nama Anda">
-        </div>
-        <div><label for="email" class="block text-sm font-medium mb-2">Email</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" placeholder="email@example.com">
-        </div>
-        <div><label for="message" class="block text-sm font-medium mb-2">Pesan</label> <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none" placeholder="Tulis pesan Anda..."></textarea>
-        </div><button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-500/30"> Kirim Pesan </button>
-       </form>
-       <div id="form-success" class="hidden mt-6 p-4 rounded-xl bg-green-500/20 text-green-400 text-center">
-        ✅ Pesan berhasil dikirim! Terima kasih telah menghubungi saya.
+       <div><label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subjek</label> <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#667eea] focus:outline-none focus:ring-2 focus:ring-[#667eea]/20 transition-all" placeholder="Subjek pesan">
        </div>
+       <div><label for="message" class="block text-sm font-medium text-gray-300 mb-2">Pesan</label> <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#667eea] focus:outline-none focus:ring-2 focus:ring-[#667eea]/20 transition-all resize-none" placeholder="Tulis pesan Anda..."></textarea>
+       </div><button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] font-semibold hover:opacity-90 transition-all hover:scale-[1.02] pulse-glow"> Kirim Pesan ✉️ </button>
+      </form>
+      <div id="form-success" class="hidden mt-6 p-4 rounded-xl bg-green-500/20 border border-green-500/30 text-green-400 text-center">
+       ✅ Pesan berhasil dikirim! Terima kasih telah menghubungi saya.
       </div>
      </div>
     </div>
    </section><!-- Footer -->
    <footer class="py-12 px-6 border-t border-white/10">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto">
      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-3">
-       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-heading font-bold text-white">
+       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center font-bold">
         A
-       </div><span class="font-heading font-semibold">Arthur Fatar Aira Bahri</span>
+       </div><span id="footer-name" class="font-semibold">Arthur Fatar Aira Bahri</span>
       </div>
-      <div class="flex items-center gap-6"><a href="https://www.instagram.com/arteezyyy__" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:scale-110 transition-all">
+      <div class="flex items-center gap-4"><a href="https://www.instagram.com/arteezyyy__" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110">
         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-        </svg></a> <a href="mailto:arthurfatar11@gmail.com" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:scale-110 transition-all">
+        </svg></a> <a href="mailto:arthurfatar11@gmail.com" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg></a> <a href="https://wa.me/6283191002449" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:scale-110 transition-all">
+        </svg></a> <a href="https://wa.me/6283191002449" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110">
         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
         </svg></a>
       </div>
-      <p class="text-gray-400 text-sm">© 2025 Arthur Fatar Aira Bahri. All rights reserved.</p>
+      <p class="text-gray-500 text-sm">© 2024 Arthur Fatar Aira Bahri. All rights reserved.</p>
      </div>
     </div>
    </footer>
   </div>
   <script>
-    // Default Configuration
+    // Default configuration
     const defaultConfig = {
       nama_lengkap: 'Arthur Fatar Aira Bahri',
-      tagline: 'Pelajar | Calon Mahasiswa ITB',
+      tagline: 'Pelajar & Future Tech Enthusiast',
       peran_utama: 'Pelajar',
-      intro_singkat: 'Seorang siswa SMAN 1 Subang yang bersemangat untuk belajar dan berkembang. Siap menghadapi tantangan baru!',
+      intro_singkat: 'Siswa SMAN 1 Subang yang passionate dalam teknologi dan inovasi. Siap untuk berkontribusi dan terus belajar.',
       email: 'arthurfatar11@gmail.com',
       whatsapp: '083191002449',
-      background_color: '#020617',
-      surface_color: '#1e293b',
-      text_color: '#f1f5f9',
-      primary_action_color: '#6366f1',
-      secondary_action_color: '#a855f7'
+      background_color: '#0a0a1a',
+      surface_color: '#0d0d20',
+      text_color: '#ffffff',
+      primary_action_color: '#667eea',
+      secondary_action_color: '#764ba2',
+      font_family: 'Plus Jakarta Sans',
+      font_size: 16
     };
-    
-    // Initialize Element SDK
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange: async (config) => {
-          // Update text content
-          document.getElementById('header-name').textContent = config.nama_lengkap || defaultConfig.nama_lengkap;
-          document.getElementById('hero-name').textContent = config.nama_lengkap || defaultConfig.nama_lengkap;
-          document.getElementById('hero-role').textContent = config.tagline || defaultConfig.tagline;
-          document.getElementById('hero-intro').textContent = config.intro_singkat || defaultConfig.intro_singkat;
-          
-          // Update contact info
-          const email = config.email || defaultConfig.email;
-          const whatsapp = config.whatsapp || defaultConfig.whatsapp;
-          
-          const contactEmail = document.getElementById('contact-email');
-          contactEmail.textContent = email;
-          contactEmail.href = `mailto:${email}`;
-          
-          const contactWhatsapp = document.getElementById('contact-whatsapp');
-          contactWhatsapp.textContent = whatsapp;
-          contactWhatsapp.href = `https://wa.me/62${whatsapp.replace(/^0/, '')}`;
-          
-          // Update colors
-          const bgColor = config.background_color || defaultConfig.background_color;
-          const surfaceColor = config.surface_color || defaultConfig.surface_color;
-          const textColor = config.text_color || defaultConfig.text_color;
-          const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
-          const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
-          
-          document.body.style.backgroundColor = bgColor;
-          document.body.style.color = textColor;
-        },
-        mapToCapabilities: (config) => ({
-          recolorables: [
-            {
-              get: () => config.background_color || defaultConfig.background_color,
-              set: (value) => {
-                config.background_color = value;
-                window.elementSdk.setConfig({ background_color: value });
-              }
-            },
-            {
-              get: () => config.surface_color || defaultConfig.surface_color,
-              set: (value) => {
-                config.surface_color = value;
-                window.elementSdk.setConfig({ surface_color: value });
-              }
-            },
-            {
-              get: () => config.text_color || defaultConfig.text_color,
-              set: (value) => {
-                config.text_color = value;
-                window.elementSdk.setConfig({ text_color: value });
-              }
-            },
-            {
-              get: () => config.primary_action_color || defaultConfig.primary_action_color,
-              set: (value) => {
-                config.primary_action_color = value;
-                window.elementSdk.setConfig({ primary_action_color: value });
-              }
-            },
-            {
-              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-              set: (value) => {
-                config.secondary_action_color = value;
-                window.elementSdk.setConfig({ secondary_action_color: value });
-              }
-            }
-          ],
-          borderables: [],
-          fontEditable: undefined,
-          fontSizeable: undefined
-        }),
-        mapToEditPanelValues: (config) => new Map([
-          ['nama_lengkap', config.nama_lengkap || defaultConfig.nama_lengkap],
-          ['tagline', config.tagline || defaultConfig.tagline],
-          ['peran_utama', config.peran_utama || defaultConfig.peran_utama],
-          ['intro_singkat', config.intro_singkat || defaultConfig.intro_singkat],
-          ['email', config.email || defaultConfig.email],
-          ['whatsapp', config.whatsapp || defaultConfig.whatsapp]
-        ])
-      });
-    }
-    
-    // Mobile Menu Toggle
+
+    let config = { ...defaultConfig };
+
+    // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     
     mobileMenuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
-    
+
     // Close mobile menu when clicking a link
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
       });
     });
-    
-    // Contact Form Handling
+
+    // Contact form handling
     const contactForm = document.getElementById('contact-form');
     const formSuccess = document.getElementById('form-success');
     
@@ -640,8 +502,6 @@
       
       // Show success message
       formSuccess.classList.remove('hidden');
-      
-      // Reset form
       contactForm.reset();
       
       // Hide success message after 5 seconds
@@ -649,7 +509,17 @@
         formSuccess.classList.add('hidden');
       }, 5000);
     });
-    
+
+    // Navbar background on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(10, 10, 26, 0.95)';
+      } else {
+        navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+      }
+    });
+
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -663,30 +533,147 @@
         }
       });
     });
-    
-    // Intersection Observer for animations
+
+    // Animate skill bars on scroll
     const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
+      threshold: 0.5
     };
-    
-    const observer = new IntersectionObserver((entries) => {
+
+    const skillObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          const bars = entry.target.querySelectorAll('.skill-bar');
+          bars.forEach(bar => {
+            bar.style.width = bar.parentElement.dataset.width || bar.style.width;
+          });
         }
       });
     }, observerOptions);
-    
-    // Observe elements with animation classes
-    document.querySelectorAll('.glass-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
+
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+      skillObserver.observe(skillsSection);
+    }
+
+    // Update UI based on config
+    async function onConfigChange(cfg) {
+      config = { ...defaultConfig, ...cfg };
+      
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = "'Plus Jakarta Sans', sans-serif";
+      const fontStack = `${customFont}, ${baseFontStack}`;
+      
+      // Update font
+      document.body.style.fontFamily = fontStack;
+      
+      // Update text content
+      document.getElementById('nav-name').textContent = config.nama_lengkap.split(' ').slice(0, 2).join(' ');
+      document.getElementById('hero-name').textContent = config.nama_lengkap;
+      document.getElementById('hero-role').textContent = config.tagline;
+      document.getElementById('hero-intro').textContent = config.intro_singkat;
+      document.getElementById('contact-email').textContent = config.email;
+      document.getElementById('contact-whatsapp').textContent = config.whatsapp;
+      document.getElementById('footer-name').textContent = config.nama_lengkap;
+      
+      // Update colors
+      document.body.style.backgroundColor = config.background_color;
+    }
+
+    // Map to capabilities for SDK
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              cfg.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => cfg.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              cfg.surface_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => cfg.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              cfg.primary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            }
+          },
+          {
+            get: () => cfg.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              cfg.secondary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => {
+            cfg.font_family = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => {
+            cfg.font_size = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    // Map to edit panel values
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['nama_lengkap', cfg.nama_lengkap || defaultConfig.nama_lengkap],
+        ['tagline', cfg.tagline || defaultConfig.tagline],
+        ['peran_utama', cfg.peran_utama || defaultConfig.peran_utama],
+        ['intro_singkat', cfg.intro_singkat || defaultConfig.intro_singkat],
+        ['email', cfg.email || defaultConfig.email],
+        ['whatsapp', cfg.whatsapp || defaultConfig.whatsapp]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    } else {
+      onConfigChange(defaultConfig);
+    }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c8e5710c607fdab',t:'MTc3MDI1MTg1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c9256f160a8e8df',t:'MTc3MDI5Mzc5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
